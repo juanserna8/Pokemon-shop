@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <p className='bg-white'>Hello Kike</p>
         </a>
       </header>
     </div>
