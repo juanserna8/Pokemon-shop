@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
+
 
 const DropdownMenu = () => {
     const [showOptions, setShowOptions] = useState(false);
@@ -39,8 +40,7 @@ const DropdownMenu = () => {
                             aria-labelledby="menu-button" 
                             tabIndex="-1"
                         >
-                                <div class="py-1" role="none">
-                                    
+                                <div className="py-1" role="none">
                                         <Link 
                                             to="/" 
                                             className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" 
@@ -67,8 +67,7 @@ const DropdownMenu = () => {
                                             id="menu-item-2"
                                         >
                                             Contact
-                                        </Link>
-                                    
+                                        </Link>    
                                 </div>
                         </div>
                     )}
