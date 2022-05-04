@@ -1,3 +1,5 @@
+import { Counter } from "reducers/counter/Counter";
+
 const Footer = () => {
     return (        
         <footer className="bg-gray-200 dark:bg-gray-800 w-full py-8 pt-10">
@@ -59,6 +61,7 @@ const Footer = () => {
                 <div className="text-center text-gray-500 dark:text-gray-200 pt-10 sm:pt-12 font-light flex items-center justify-center">
                     Created by Charlie
                 </div>
+            <Counter />
             </div>
         </footer>
 

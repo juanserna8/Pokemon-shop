@@ -56,7 +56,7 @@ const Projects = () => {
                             })
                         */}
                         <div className="pokemon-container">
-                            <div className="all-container grid grid-cols-3 lg:grid-cols-5 gap-10 max-w-3xl mx-auto px-6 xl:px-0">
+                            <div className="all-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 max-w-3xl mx-auto px-6 xl:px-0">
                                 {allPokemons.map((pokemon, index) =>
                                     <PokemonProjects 
                                         key={index}
