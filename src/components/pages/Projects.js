@@ -1,30 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PokemonProjects from 'components/pages/PokemonProjects.js';
+import { DetailedPokemon } from 'reducers/detailedPokemon/DetailedPokemon';
 
 const Projects = () => {
+    const targetRef = useRef(null);
     const [allPokemons, setAllPokemons] = useState([]);
     const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+    const [myElementIsVisible, setMyElementIsVisible] = useState();
+    console.log('myElementIsVisible', myElementIsVisible)
     
     const getAllPokemons = async () => {
         const res = await fetch(loadMore);
+        console.log(res);
         const data = await res.json();
+        console.log(data);
 
         setLoadMore(data.next)
 
-        function createPokemonObject (result) {
-            result.forEach(async (pokemon) => {
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-                const data = await res.json()
-
-                setAllPokemons(currentList => [...currentList, data]);
-            })
-        }
+        
         createPokemonObject(data.results)
         await console.log(data.results)
     }
+    
+    function createPokemonObject (result) {
+        result.forEach(async (pokemon) => {
+            const res = await fetch(pokemon.url)
+            const singlePokemon = await res.json()
+
+            setAllPokemons(
+                function makeList(pokemonAcumulator){
+                    console.log(pokemonAcumulator);
+                    return [...pokemonAcumulator, singlePokemon];
+                }
+            ) 
+        })
+    }
+
+    
 
     useEffect(() => {
         getAllPokemons()
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0]
+            setMyElementIsVisible(entry.isIntersecting)
+        })
+        observer.observe(targetRef.current)
     }, []);
 
     // const images = [
@@ -36,7 +56,8 @@ const Projects = () => {
     // ]; 
     
     return (
-        <div className="bg-black">
+        <div className="bg-black pt-4">
+            <DetailedPokemon />
             <h1 className='pt-6 text-4xl text-white flex items-center justify-center'>Projects</h1>
                 <div className='min-h-screen pt-4'>
                         {/*
@@ -64,6 +85,10 @@ const Projects = () => {
                                         name={pokemon.name}
                                         image={pokemon.sprites.other.dream_world.front_default}
                                         type={pokemon.types[0].type.name}
+                                        abilities={pokemon.abilities[0].ability.name}
+                                        experience={pokemon.base_experience}
+                                        weight={pokemon.weight}
+                                        height={pokemon.height}
                                     />
                                 )}
                             </div>
@@ -71,6 +96,7 @@ const Projects = () => {
                                 <button 
                                     className="rounded p-2 border-solid border-2 border-slate-500 text-white" 
                                     onClick={() => getAllPokemons()}
+                                    ref={targetRef}
                                 >
                                     Load more
                                 </button>

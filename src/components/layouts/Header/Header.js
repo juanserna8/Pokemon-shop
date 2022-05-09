@@ -16,7 +16,7 @@ const Header = () => {
                             <DropdownMenu />
                             <Counter />
                             <p>{count}</p>
-                            <p>Name: {currentPokemon.name}, id: #{currentPokemon.id}</p>
+                            {/*<p>Name: {currentPokemon.name}, id: #{currentPokemon.id}</p>*/}
                             <a className="flex-shrink-0" href="/">
                                 <img className="h-14 w-18" src={logo} alt="Web-dev"/>
                             </a>
