@@ -5,46 +5,47 @@ import { DetailedPokemon } from 'reducers/detailedPokemon/DetailedPokemon';
 const Projects = () => {
     const targetRef = useRef(null);
     const [allPokemons, setAllPokemons] = useState([]);
-    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
-    const [myElementIsVisible, setMyElementIsVisible] = useState();
-    console.log('myElementIsVisible', myElementIsVisible)
-    
-    const getAllPokemons = async () => {
-        const res = await fetch(loadMore);
-        console.log(res);
+    //const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+    let loadMore = 'https://pokeapi.co/api/v2/pokemon?limit=20'
+
+    async function getAllPokemons(){
+        const res = await fetch(loadMore)
         const data = await res.json();
-        console.log(data);
+        console.log(data, res);
 
-        setLoadMore(data.next)
-
+        loadMore = data.next
+        //setLoadMore(data.next)
+        console.log(loadMore, data.next)
         
         createPokemonObject(data.results)
-        await console.log(data.results)
     }
     
     function createPokemonObject (result) {
         result.forEach(async (pokemon) => {
             const res = await fetch(pokemon.url)
             const singlePokemon = await res.json()
+            console.log(singlePokemon)
 
             setAllPokemons(
                 function makeList(pokemonAcumulator){
-                    console.log(pokemonAcumulator);
                     return [...pokemonAcumulator, singlePokemon];
                 }
             ) 
         })
     }
 
-    
-
-    useEffect(() => {
-        getAllPokemons()
+    function observerSetUp() {
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0]
-            setMyElementIsVisible(entry.isIntersecting)
+            if(entry.isIntersecting) {
+                getAllPokemons()
+            }
         })
         observer.observe(targetRef.current)
+    }
+
+    useEffect(() => {
+        observerSetUp()
     }, []);
 
     // const images = [
@@ -58,8 +59,8 @@ const Projects = () => {
     return (
         <div className="bg-black pt-4">
             <DetailedPokemon />
-            <h1 className='pt-6 text-4xl text-white flex items-center justify-center'>Projects</h1>
-                <div className='min-h-screen pt-4'>
+            <h1 className='pt-6 text-4xl text-white flex items-center justify-center'>ONLINE SHOP</h1>
+                <div className='min-h-screen pt-6'>
                         {/*
                             images.map(({id, src, title}) => {
                                 return <a 
@@ -85,7 +86,7 @@ const Projects = () => {
                                         name={pokemon.name}
                                         image={pokemon.sprites.other.dream_world.front_default}
                                         type={pokemon.types[0].type.name}
-                                        abilities={pokemon.abilities[0].ability.name}
+                                        abilities={pokemon.abilities}
                                         experience={pokemon.base_experience}
                                         weight={pokemon.weight}
                                         height={pokemon.height}
