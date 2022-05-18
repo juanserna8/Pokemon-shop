@@ -10,6 +10,7 @@ export const shoppingCartSlice = createSlice({
     }, 
     reducers: {
         addPokemonToCart: (state, action) => {
+            console.log(action.payload)
             state.cart.push(action.payload)
             state.id = action.payload.id
             state.image = action.payload.image

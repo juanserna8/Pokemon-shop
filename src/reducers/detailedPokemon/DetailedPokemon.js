@@ -1,24 +1,36 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemonToCart } from "reducers/shoppingCart/shoppingCartSlice";
 
 export function DetailedPokemon() {
     const pokemonSelector = useSelector((state) => state.detailedPokemon);
+    const cartSelector = useSelector((state) => state.shoppingCart)
+    let cartArray = cartSelector.cart;
+    const dispatch = useDispatch();
 
     return(
-        <div className="mx-auto grid md:grid-cols-2 border-2 border-blue-400 rounded w-1/2 lg:w-1/3 transition-transform duration-300 ease-out justify-items-center items-center">
-            <div className="details col-span-1 justify-items-center font-bebas">
+        <div className="mx-auto grid w-3/4  md:grid-cols-2 border-2 border-blue-400 rounded md:w-1/2 lg:w-1/3 transition-transform duration-300 ease-out justify-items-center items-center">
+            <div className="details col-span-1 justify-items-center font-bebas pl-2">
                 <p className="text-white">Name: {pokemonSelector.name}</p>
-                <p className="text-white">abilities: </p>
-                {pokemonSelector.abilities[0] ? pokemonSelector.abilities.map((ability, index) => {
-                    return <p key={index} className="text-white">{ability.ability.name}</p>
-                }) : 'undefined'}
-                <p className="text-white">weight: {pokemonSelector.weight}</p>
-                <p className="text-white">experience: {pokemonSelector.experience}</p>
-                <p className="text-white">height: {pokemonSelector.height}</p>
+                <p className="text-white">Abilities: </p>
+                <ol className='list-decimal pl-4'>
+                    {pokemonSelector.abilities[0] ? pokemonSelector.abilities.map((ability, index) => {
+                        return <li key={index} className="text-white">{ability.ability.name}</li>
+                    }) : 'undefined'}
+                </ol>
+                <p className="text-white">Weight: {pokemonSelector.weight}</p>
+                <p className="text-white">Experience: {pokemonSelector.experience}</p>
+                <p className="text-white">Height: {pokemonSelector.height}</p>
             </div>
             <div className="image col-span-1 h-[16rem] flex items-center">
                 <img src={pokemonSelector.imageUrl} className='h-[70%] p-2 animate-wiggle ' />
             </div>
-            <button className="col-span-2 border-2 p-1 -mt-4 mb-4 rounded text-xs text-black font-semibold bg-orange-400 hover:scale-110">Add to cart</button>
+            <button 
+                className="col-span-2 border-2 p-1 -mt-4 mb-4 rounded text-xs text-black font-semibold bg-orange-400 hover:scale-110"
+                onClick={() => {
+                    dispatch(addPokemonToCart({name: pokemonSelector.name, id: pokemonSelector.id, image: pokemonSelector.imageUrl, weight: pokemonSelector.weight}))
+                }}
+            >
+                Add to cart</button>
         </div>
     )
 }

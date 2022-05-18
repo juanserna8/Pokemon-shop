@@ -6,6 +6,7 @@ const ShoppingCart = () => {
 
     console.log(cartSelector)
 
+
     return (
         <div className="bg-black flex justify-center">            
             {cartArray.length === 0 && (
@@ -19,7 +20,7 @@ const ShoppingCart = () => {
                             <img src={image} className='h-24 w-16 mx-4' />
                             <div className="col-span-1 md:col-span-2 grid justify-items-center items-center pl-2">
                                 <h2 className="text-white">Pokemon: {name}</h2>
-                                <p className="text-white">${weight}</p>
+                                <p className="text-white">${id}</p>
                             </div>
                             <div className="md:col-start-5 flex flex-col justify-between items-end pr-2">
                                 <button className="">
