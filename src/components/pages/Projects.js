@@ -59,7 +59,7 @@ const Projects = () => {
     return (
         <div className="bg-black pt-4">
             <DetailedPokemon />
-            <h1 className='pt-6 text-4xl text-white flex items-center justify-center'>ONLINE SHOP</h1>
+            <h1 className='pt-6 text-4xl text-white flex items-center justify-center'>POKE SHOP</h1>
                 <div className='min-h-screen pt-6'>
                         {/*
                             images.map(({id, src, title}) => {
