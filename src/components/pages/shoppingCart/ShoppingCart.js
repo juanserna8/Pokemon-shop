@@ -6,10 +6,6 @@ const ShoppingCart = () => {
     const cartSelector = useSelector((state) => state.shoppingCart)
     let cartArray = cartSelector.cart;
 
-    const handleRemovePokemon = (cartItem) => {
-        dispatch(removePokemon(cartItem))
-    }
-
     return (
         <div className="bg-black flex justify-center">            
             {cartArray.length === 0 && (
@@ -26,7 +22,18 @@ const ShoppingCart = () => {
                                 <p className="text-white">${id}</p>
                             </div>
                             <div className="md:col-start-5 flex flex-col justify-between items-end pr-2">
-                                <button onClick={(cartItem) => handleRemovePokemon(cartItem)}>
+                                {/* {<button onClick={(cartSelector) => {
+                                    dispatch(removePokemon({id: cartSelector.id}))
+                                    console.log(id)
+                                    }}>} */}
+                                    {/* {<button onClick={() => {
+                                    dispatch(removePokemon({id: id}))
+                                    console.log(id)
+                                    }}>} */}
+                                    <button onClick={() => {
+                                    dispatch(removePokemon({id}))
+                                    console.log(id)
+                                    }}>
                                     <svg className="h-8 w-8 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" /></svg>
                                 </button>
                                 <p className="text-white text-xs">Qty: {cartQuantity}</p>
