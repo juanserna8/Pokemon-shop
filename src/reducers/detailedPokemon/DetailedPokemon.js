@@ -24,7 +24,7 @@ export function DetailedPokemon() {
                                     return <li key={index} className="text-white">{ability.ability.name}</li>
                                 }) : 'undefined'}
                             </ol>
-                            <p className="text-white">Weight: {pokemonSelector.weight}</p>
+                            <p className="text-white">Price: ${pokemonSelector.weight}</p>
                             <p className="text-white">Experience: {pokemonSelector.experience}</p>
                             <p className="text-white">Height: {pokemonSelector.height}</p>
                         </div>
