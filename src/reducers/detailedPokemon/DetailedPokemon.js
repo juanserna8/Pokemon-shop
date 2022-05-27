@@ -1,3 +1,4 @@
+import { stringify } from "postcss";
 import { useDispatch, useSelector } from "react-redux";
 import { addPokemonToCart } from "reducers/shoppingCart/shoppingCartSlice";
 
@@ -6,6 +7,9 @@ export function DetailedPokemon() {
     const cartSelector = useSelector((state) => state.shoppingCart)
     let cartArray = cartSelector.cart;
     const dispatch = useDispatch();
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
 
     return(
         <div className="mx-auto w-3/4 border-2 border-blue-400 rounded md:w-1/2 lg:w-1/3 transition-transform duration-300 ease-out justify-items-center items-center">
@@ -17,16 +21,28 @@ export function DetailedPokemon() {
                 {pokemonSelector.id != null && (
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 justify-items-center items-center">
                         <div className="details justify-items-center font-bebas pl-2">
-                            <p className="text-white">Name: {pokemonSelector.name}</p>
-                            <p className="text-white">Abilities: </p>
-                            <ol className='list-decimal pl-4'>
+                            <div className="flex items-end">
+                                <p className="text-white font-bold text-lg">Name:</p>
+                                <p className="text-white pl-1">{capitalizeFirstLetter(pokemonSelector.name)}</p>
+                            </div>
+                            <p className="text-white font-bold text-lg">Abilities: </p>
+                            <ol className='list-decimal pl-6'>
                                 {pokemonSelector.abilities[0] ? pokemonSelector.abilities.map((ability, index) => {
-                                    return <li key={index} className="text-white">{ability.ability.name}</li>
+                                    return <li key={index} className="text-white">{capitalizeFirstLetter(ability.ability.name)}</li>
                                 }) : 'undefined'}
                             </ol>
-                            <p className="text-white">Price: ${pokemonSelector.weight}</p>
-                            <p className="text-white">Experience: {pokemonSelector.experience}</p>
-                            <p className="text-white">Height: {pokemonSelector.height}</p>
+                            <div className="flex items-end">
+                                <p className="text-white font-bold text-lg">Price: </p>
+                                <p className="text-white pl-1"> ${pokemonSelector.weight}</p>
+                            </div>
+                            <div className="flex items-end">
+                                <p className="text-white font-bold text-lg">Experience: </p>
+                                <p className="text-white pl-1">{pokemonSelector.experience}</p>
+                            </div>
+                            <div className="flex items-end">
+                                <p className="text-white font-bold text-lg">Height: </p>
+                                <p className="text-white pl-1">{pokemonSelector.height}</p>
+                            </div>
                         </div>
                             <div className="image h-[16rem] flex items-center">
                                 <img src={pokemonSelector.imageUrl} className='h-[55%] md:h-[70%] p-2 animate-wiggle ' />

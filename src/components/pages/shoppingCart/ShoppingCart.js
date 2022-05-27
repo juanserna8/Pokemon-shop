@@ -80,8 +80,8 @@ const ShoppingCart = () => {
                         Clear cart
                     </button>
                     <div className="flex">
-                        <h1 className="text-white">Subtotal</h1>
-                        <p className="text-white pl-2">${cartSelector.cartTotalAmount}</p>
+                        <h1 className="text-white font-bold -mr-2">Subtotal:</h1>
+                        <p className="text-white pl-3 -mr-2">${cartSelector.cartTotalAmount}</p>
                     </div>
             </div>
             )}

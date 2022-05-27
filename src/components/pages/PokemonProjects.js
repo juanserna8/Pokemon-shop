@@ -1,11 +1,12 @@
 import { addPokemon } from "reducers/counter/currentPokemonSlice";
 import { useDispatch } from "react-redux";
 import { addDetailedPokemon } from "reducers/detailedPokemon/detailedPokemonSlice";
-import { addPokemonToCart } from "reducers/shoppingCart/shoppingCartSlice";
-
+    
 const PokemonProjects = ({id, name, image, type, abilities, experience, weight, height}) => {
-    //() => console.log({id, name, imageUrl: image})
     const dispatch = useDispatch()
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
 
     return (
         <div className='border-solid border-2 border-blue-400 rounded overflow-hidden h-[15rem]' onClick={() => {
@@ -17,8 +18,8 @@ const PokemonProjects = ({id, name, image, type, abilities, experience, weight, 
             </div>
             <img className="h-[70%] p-2 mx-auto" src={image} alt={name} />
             <div className="bg-orange-400 text-center">
-                <h3 className="text-black font-semibold">{name}</h3>
-                <small className="text-black font-medium">Type: {type}</small>
+                <h3 className="text-black font-semibold">{capitalizeFirstLetter(name)}</h3>
+                <small className="text-black font-medium">Type: {capitalizeFirstLetter(type)}</small>
             </div>
         </div>
     );
