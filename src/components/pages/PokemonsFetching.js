@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
-import PokemonProjects from 'components/pages/PokemonProjects.js';
+import PokemonCards from 'components/pages/PokemonCards.js';
 import { DetailedPokemon } from 'reducers/detailedPokemon/DetailedPokemon';
 
-const Projects = () => {
+const PokemonsFetching = () => {   
     const targetRef = useRef(null);
     const [allPokemons, setAllPokemons] = useState([]);
     //const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
@@ -57,9 +57,9 @@ const Projects = () => {
     // ]; 
     
     return (
-        <div className="bg-black pt-4">
+        <div className="bg-black py-6">
             <DetailedPokemon />
-            <h1 className='pt-6 text-4xl text-white flex items-center justify-center'>POKE SHOP</h1>
+            <h1 className='pt-6 text-yellow-400 text-4xl font-bold flex items-center justify-center'>AVAILABLE POKEMONS</h1>
                 <div className='min-h-screen pt-6'>
                         {/*
                             images.map(({id, src, title}) => {
@@ -80,7 +80,7 @@ const Projects = () => {
                         <div className="pokemon-container">
                             <div className="all-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 max-w-3xl mx-auto px-6 xl:px-0">
                                 {allPokemons.map((pokemon, index) =>
-                                    <PokemonProjects 
+                                    <PokemonCards 
                                         key={index}
                                         id={pokemon.id}
                                         name={pokemon.name}
@@ -108,4 +108,4 @@ const Projects = () => {
     );
 }
  
-export default Projects;
+export default PokemonsFetching;

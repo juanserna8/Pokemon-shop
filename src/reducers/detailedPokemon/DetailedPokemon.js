@@ -12,7 +12,7 @@ export function DetailedPokemon() {
     }
 
     return(
-        <div className="mx-auto w-3/4 border-2 border-blue-400 rounded md:w-1/2 lg:w-1/3 transition-transform duration-300 ease-out justify-items-center items-center">
+        <div className="pb-4 mx-auto w-3/4 border-2 border-blue-400 rounded md:w-1/2 lg:w-1/3 transition-transform duration-300 ease-out justify-items-center items-center">
                 {pokemonSelector.id === null && (
                     <div className="details col-span-2 justify-items-center font-bebas pl-2"> 
                         <p className="text-white text-center">Select a Pokemon</p>
@@ -48,7 +48,7 @@ export function DetailedPokemon() {
                                 <img src={pokemonSelector.imageUrl} className='h-[55%] md:h-[70%] p-2 animate-wiggle ' />
                             </div>
                             <button 
-                                className="col-span-2 border-2 p-1 -mt-4 mb-4 rounded text-xs text-black font-semibold bg-orange-400 hover:scale-110"
+                                className="col-span-2 border-2 p-1 -mt-3 mb-4 rounded text-xs text-black font-semibold bg-orange-400 hover:scale-110"
                                 onClick={() => {
                                     dispatch(addPokemonToCart({name: pokemonSelector.name, id: pokemonSelector.id, image: pokemonSelector.imageUrl, weight: pokemonSelector.weight}))
                                 }}

@@ -13,7 +13,7 @@ const ShoppingCart = () => {
     }, [cartSelector, dispatch])
 
     return (
-        <div className="bg-black">
+        <div className="bg-black py-6">
             <div className="flex justify-center">            
                 {cartArray.length === 0 && (
                     <h1 className="text-white text-2xl m-4 text-center">Your cart is currently empty ... No pokemon has been selected yet</h1>

@@ -20,7 +20,8 @@ module.exports = {
           '0%, 100%': {transform: 'scale(1)'},
           '25%': {transform: 'scale(1.2)'},
         }
-      }
+      },
+      visibility: ["group-hover"]
     },
   },
   plugins: [],

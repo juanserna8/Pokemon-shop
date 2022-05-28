@@ -2,7 +2,7 @@ import { addPokemon } from "reducers/counter/currentPokemonSlice";
 import { useDispatch } from "react-redux";
 import { addDetailedPokemon } from "reducers/detailedPokemon/detailedPokemonSlice";
     
-const PokemonProjects = ({id, name, image, type, abilities, experience, weight, height}) => {
+const PokemonCards = ({id, name, image, type, abilities, experience, weight, height}) => {
     const dispatch = useDispatch()
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
@@ -25,4 +25,4 @@ const PokemonProjects = ({id, name, image, type, abilities, experience, weight, 
     );
 }
  
-export default PokemonProjects;
+export default PokemonCards;

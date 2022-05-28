@@ -1,7 +1,5 @@
-import logo from 'assets/logo.png';
+import logo from 'assets/logo.jpg';
 import DropdownMenu from 'components/layouts/Header/DropdownMenu';
-import { Counter } from 'reducers/counter/Counter';
-import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
 const LinkButton = () => {
@@ -15,9 +13,6 @@ const LinkButton = () => {
 } 
 
 const Header = () => {
-    const count = useSelector((state) => state.counter.value)
-    const currentPokemon = useSelector((state) => state.currentPokemon)
-
     return (
         <div className=''>
             <nav className="header bg-white dark:bg-gray-800 shadow">
@@ -25,12 +20,10 @@ const Header = () => {
                     <div className="flex items-center justify-between h-16">
                         <div className="w-full justify-between flex items-center">
                             <DropdownMenu />
-                            <Counter />
-                            <p>{count}</p>
                             {/*<p>Name: {currentPokemon.name}, id: #{currentPokemon.id}</p>*/}
-                            <a className="flex-shrink-0" href="/">
-                                <img className="h-14 w-18" src={logo} alt="Web-dev"/>
-                            </a>
+                            <Link className="flex-shrink-0" to="/pokemons">
+                                <img className="h-14 w-14 rounded-full border-2 border-gray" src={logo} alt="Web-dev"/>
+                            </Link>
                             <Link to="/shoppingCart">
                                 <LinkButton></LinkButton> 
                             </Link>
