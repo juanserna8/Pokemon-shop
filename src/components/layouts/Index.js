@@ -1,6 +1,6 @@
-import page from 'assets/page.jpeg';
-import cards from 'assets/cards.jpg'
 import cover from 'assets/cover.jpg'
+import pokemons from 'assets/pokemons.webp'
+import { Link } from 'react-router-dom';
 
 const Layout = () => {
     
@@ -10,8 +10,21 @@ const Layout = () => {
             <div className='w-full border-t-[1rem] border-black'>
                 <img src={cover} className='object-cover h-48 w-full' />
             </div>
-            <p className='text-white text-justify text-md lg:text-lg m-4 lg:w-2/3'>This is a website where you can select all your favorite pokemons for your next battles. Go to "Pokemons" section or just click on the pokeball at the top of this page to see all available pokemons.
-            Also, head to the shopping cart section to check all the pokemons that you have chosen, and increase or decrease theie quantity in case you want to modify it.</p>
+            <div className='lg:flex mx-10 mt-10'>
+                <div className='lg:w-2/3 p-2'>
+                    <p className='text-white text-justify text-md lg:text-lg'>This is a website where you can select all your favorite pokemons for your next battles. Go to "Pokemons" section or just click on the pokeball at the top of this page to see all available pokemons.
+                    Also, head to the shopping cart section to check all the pokemons that you have chosen, and increase or decrease their quantity in case you want to modify it. </p>
+                    <p className='text-white text-justify text-md lg:text-lg'>See which pokemons suit your budget and find the best team for you!</p>
+                </div>
+                <div className='mx-auto p-2 mt-10 lg:mt-0'>
+                    <img src={pokemons} className='object-contain w-full h-48' />
+                </div>
+            </div>
+            <div className='flex justify-center lg:block lg:mx-12 py-8 lg:-mt-4'>
+                <Link to="/pokemons">
+                    <button className='rounded text-lg text-white bg-green-600 py-2 px-10'>Go to shop</button>
+                </Link>
+            </div>
             {/*<div className='mt-16 flex justify-center'>
                 <div className='w-2/3 md:w-1/3 -ml-6'>
                     <img src={cards} className="object-cover md:max-h-[18rem]" />

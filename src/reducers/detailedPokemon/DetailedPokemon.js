@@ -19,7 +19,7 @@ export function DetailedPokemon() {
                     </div>
                 )}
                 {pokemonSelector.id != null && (
-                    <div className="w-full grid grid-cols-1 md:grid-cols-2 justify-items-center items-center">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 justify-items-center items-center px-4">
                         <div className="details justify-items-center font-bebas pl-2">
                             <div className="flex items-end">
                                 <p className="text-white font-bold text-lg">Name:</p>
