@@ -1,37 +1,64 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Contact = () => {
-    const [pokemon, setPokemon] = useState([])
+    const [pokemons, setPokemons] = useState([])
     const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon")
-    const [nextPageUrl, setNextPageUrl] = useState();
-    const [prevPageUrl, setPrevPageUrl] = useState();
-    const [ loading, setLoading] = useState(true);
+    const [search, setSearch] = useState('');
+
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
+
+    const filteredPokemons = pokemons.filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(search.toLowerCase());
+    })
+
+    //Extract the 'name' URL parameter 
+    const { name } = useParams();
+    console.log(name);
+    
+    async function getAllPokemons() {
+        const res = await fetch(currentPageUrl)
+        const data = await res.json() 
+        console.log(data)
+
+        createPokemonObject(data.results)
+    }
+
+    //Explicacion de esta funcion????
+    function createPokemonObject(result) {
+        result.forEach(async (pokemon) => {
+            const res = await fetch(pokemon.url)
+            const singlePokemon = await res.json()
+            console.log('hola', singlePokemon.name)
+
+            setPokemons(
+                function makeList(pokemonAcumulator){
+                    return [...pokemonAcumulator, singlePokemon];
+                }
+            )
+        })
+    }
 
     useEffect(() => {
-        setLoading(true)
-        let cancel
-        axios.get(currentPageUrl, {
-            cancelToken: new axios.CancelToken(c => cancel = c)
-        }).then(res => {
-            setLoading(false)
-            setNextPageUrl(res.data.next)
-            setPrevPageUrl(res.data.previous)
-            setPokemon(res.data.results.map(p => p.name))
-        })
-        return () => cancel()
-    }, [currentPageUrl]);
+        getAllPokemons()
+    }, [])
 
-    if (loading) return 'Loading...'
 
     return (
         <div className="mt-4 grid grid-cols-1 justify-items-center">
             <h1 className="text-4xl">Let's keep in touch</h1>
             <p>Need help with your business or project website? ... Let's talk!</p>
-            <ul>{pokemon.map((p) => {
-                return <li key={p}>{p}</li>
+            <div className='search my-4 border-2 border-gray-600 rounded'>
+                <input type="text" value={search} onChange={handleSearch} />
+            </div>
+            <ul>{filteredPokemons.map((pokemon, index) => {
+                return <li key={index}>{pokemon.name}</li>
             })}
             </ul>
+            <p className='text-black'>{name}</p>
         </div>
     );
 }

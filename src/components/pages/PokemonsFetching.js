@@ -5,8 +5,18 @@ import { DetailedPokemon } from 'reducers/detailedPokemon/DetailedPokemon';
 const PokemonsFetching = () => {   
     const targetRef = useRef(null);
     const [allPokemons, setAllPokemons] = useState([]);
-    //const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+    const [search, setSearch] = useState('');
+
     let loadMore = 'https://pokeapi.co/api/v2/pokemon?limit=20'
+
+
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
+
+    const filteredPokemons = allPokemons.filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(search.toLowerCase());
+    })
 
     async function getAllPokemons(){
         const res = await fetch(loadMore)
@@ -59,27 +69,17 @@ const PokemonsFetching = () => {
     return (
         <div className="bg-black py-6">
             <DetailedPokemon />
-            <h1 className='pt-6 text-yellow-400 text-4xl font-bold flex items-center justify-center'>AVAILABLE POKEMONS</h1>
+            <h1 className='text-center pt-10  text-yellow-400 text-4xl font-bold flex items-center justify-center'>AVAILABLE POKEMONS</h1>
                 <div className='min-h-screen pt-6'>
-                        {/*
-                            images.map(({id, src, title}) => {
-                                return <a 
-                                            key={id} 
-                                            href={src} 
-                                            target='_blank' 
-                                            className='border-solid border-2 border-blue-400 rounded overflow-hidden bg-gray-300'
-                                        >
-                                            <img 
-                                                src={src} 
-                                                title={title} 
-                                                className=" object-top object-none transition-all duration-1000 h-40 hover:object-bottom" 
-                                            />        
-                                        </a>
-                            })
-                        */}
+                    <input 
+                        type="text" 
+                        className='mx-auto max-w-2/3 flex myt-4 mb-8 text-center border-2 border-gray-200 rounded' 
+                        placeholder='Search pokemon'
+                        onChange={handleSearch}
+                    />
                         <div className="pokemon-container">
                             <div className="all-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 max-w-3xl mx-auto px-6 xl:px-0">
-                                {allPokemons.map((pokemon, index) =>
+                                {filteredPokemons.map((pokemon, index) =>
                                     <PokemonCards 
                                         key={index}
                                         id={pokemon.id}

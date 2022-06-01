@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         bebas: "'Bebas Neue', cursive",
+        indie: "'Indie Flower', cursive",
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',

@@ -7,6 +7,9 @@ const ShoppingCart = () => {
     const cartSelector = useSelector((state) => state.shoppingCart)
     let cartArray = cartSelector.cart;
     
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
 
     useEffect(() => {
         dispatch(getTotals())
@@ -25,8 +28,8 @@ const ShoppingCart = () => {
                             <div className="grid grid-cols-3 md:grid-cols-5 my-2 max-h-24">
                                 <img src={image} className='h-24 w-16 mx-4' />
                                 <div className="col-span-1 md:col-span-3 grid justify-items-center items-center pl-2">
-                                    <h2 className="text-white">Pokemon: {name}</h2>
-                                    <p className="text-white">${weight * cartQuantity}</p>
+                                    <h2 className="text-white lg:text-2xl">Pokemon: {capitalizeFirstLetter(name)}</h2>
+                                    <p className="text-white text-xl">${weight * cartQuantity}</p>
                                 </div>
                                 <div className="md:col-start-5 flex flex-col justify-between items-end pr-2">
                                     {/* {<button onClick={(cartSelector) => {
@@ -75,7 +78,7 @@ const ShoppingCart = () => {
                         onClick={() => {
                             dispatch(clearCart())
                         }}
-                        className="text-white border-2 border-white rounded mb-4 p-2"
+                        className="text-white border-2 border-white rounded mb-4 p-2 hover:bg-gray-500"
                     >
                         Clear cart
                     </button>
