@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Pokemon shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Pokemon Shop cover image](https://github.com/juanserna8/portfolio/main/src/assets/cover.jpg)
 
-## Available Scripts
+Pokemon shop is a web application where you can visualize all your favourite prokemons with their abilities, characteristics and price, and decide which of them you would like to count on for your next battles, depending on your budget, preferences and strategies you might have.
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+This project is based on React Js, Redux and Tailwind CSS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The data is being fetched from PokeApi, an API which serves over 250,000,000 calls each month!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There is a dropdwon menu where you can see the About/Home page, and the "Pokemons" page, which you can also have access by clicking the PokeBall located in the Header.
 
-### `npm run build`
+In that section, you can select the pokemons you wish and you like, based on their characteristics, price, etc.. To see all those details just click one of the pokemons' cards and it will be shown at the top of the page, where you can decide whether you want to add them in your shopping cart or not.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The cart section can be accesed by clicking in the cart icon at the top right corner of the page. In there, you will find all the Pokemons that you had selected, increase or decrease their quantity  and know the total price you are going to pay in case you want them.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Purpose of the website
+This website was built to practice how data flows in a React app using the useState hook and Redux toolkit. It also intends to reinforce the fetching data from public APIs and how and when call the data, using the useEffect hook.
