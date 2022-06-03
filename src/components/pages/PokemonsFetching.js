@@ -9,32 +9,33 @@ const PokemonsFetching = () => {
 
     let loadMore = 'https://pokeapi.co/api/v2/pokemon?limit=20'
 
-
     const handleSearch = (event) => {
         setSearch(event.target.value)
     }
 
+    //Function that filters pokemons
     const filteredPokemons = allPokemons.filter((pokemon) => {
         return pokemon.name.toLowerCase().includes(search.toLowerCase());
     })
 
+    //Fetch the pokemons
     async function getAllPokemons(){
         const res = await fetch(loadMore)
         const data = await res.json();
-        console.log(data, res);
+        //console.log(data, res);
 
-        loadMore = data.next
-        //setLoadMore(data.next)
-        console.log(loadMore, data.next)
+        loadMore = data.next //setLoadMore(data.next)
+        //console.log(loadMore, data.next)
         
         createPokemonObject(data.results)
     }
     
+    //Create single pokemons
     function createPokemonObject (result) {
         result.forEach(async (pokemon) => {
             const res = await fetch(pokemon.url)
             const singlePokemon = await res.json()
-            console.log(singlePokemon)
+            //console.log(singlePokemon)
 
             setAllPokemons(
                 function makeList(pokemonAcumulator){
@@ -44,6 +45,7 @@ const PokemonsFetching = () => {
         })
     }
 
+    //Infinite scroll
     function observerSetUp() {
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0]
@@ -57,14 +59,6 @@ const PokemonsFetching = () => {
     useEffect(() => {
         observerSetUp()
     }, []);
-
-    // const images = [
-    //     {id: 1, src: 'https://media.istockphoto.com/photos/web-development-and-web-design-concept-in-dark-blue-background-for-picture-id1291971619?b=1&k=20&m=1291971619&s=170667a&w=0&h=QHnZ92KhqdYO6zj0_dC_RWSsCJo1n_gaQ9XK0kHd7x0=', title: 'img1'},
-    //     {id: 2, src: 'https://www.lauyan.com/en/_media/img/medium/responsive-showcase-presentation-house4sale.jpg', title: 'img2'},
-    //     {id: 3, src: 'https://cdn.dribbble.com/users/2151039/screenshots/14664792/media/e861f954a94b7c30c9fa90032ab652d1.jpg?compress=1&resize=400x300&vertical=top', title: 'img3'},
-    //     {id: 4, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReHdsq49GOzxKH5fUziy6xI4RsjdgaIS6GAQ&usqp=CAU', title: 'img4'},
-    //     {id: 5, src: 'https://assets.awwwards.com/awards/submissions/2016/06/575a73adbc8e2.jpg', title: 'img5'}
-    // ]; 
     
     return (
         <div className="bg-black py-6">

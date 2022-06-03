@@ -1,11 +1,8 @@
-import { stringify } from "postcss";
 import { useDispatch, useSelector } from "react-redux";
 import { addPokemonToCart } from "reducers/shoppingCart/shoppingCartSlice";
 
 export function DetailedPokemon() {
     const pokemonSelector = useSelector((state) => state.detailedPokemon);
-    const cartSelector = useSelector((state) => state.shoppingCart)
-    let cartArray = cartSelector.cart;
     const dispatch = useDispatch();
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
@@ -48,7 +45,7 @@ export function DetailedPokemon() {
                                 <img src={pokemonSelector.imageUrl} className='h-[55%] md:h-[70%] p-2 animate-wiggle ' />
                             </div>
                             <button 
-                                className="col-span-2 border-2 p-1 -mt-3 mb-4 rounded text-xs text-black font-semibold bg-orange-400 hover:scale-110"
+                                className="col-span-2 border-2 p-1 mb-4 rounded text-xs text-black font-semibold bg-orange-400 hover:scale-110"
                                 onClick={() => {
                                     dispatch(addPokemonToCart({name: pokemonSelector.name, id: pokemonSelector.id, image: pokemonSelector.imageUrl, weight: pokemonSelector.weight}))
                                 }}

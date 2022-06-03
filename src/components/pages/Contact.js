@@ -1,24 +1,17 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Contact = () => {
     const [pokemons, setPokemons] = useState([])
     const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon")
-    const [search, setSearch] = useState('');
+    const [pokemon, setPokemon] = useState({name: 'latias', image:'https://heraldjournalism.com/wp-content/uploads/2020/07/347-3471090_latias-png-pokemon-latias-png.jpg'}); 
+    
 
-    const handleSearch = (event) => {
-        setSearch(event.target.value)
-    }
-
-    const filteredPokemons = pokemons.filter((pokemon) => {
-        return pokemon.name.toLowerCase().includes(search.toLowerCase());
-    })
 
     //Extract the 'name' URL parameter 
-    const { name } = useParams();
-    console.log(name);
+    const { identifier } = useParams();
     
+    //Fetching all the pokemons
     async function getAllPokemons() {
         const res = await fetch(currentPageUrl)
         const data = await res.json() 
@@ -27,12 +20,11 @@ const Contact = () => {
         createPokemonObject(data.results)
     }
 
-    //Explicacion de esta funcion????
+    //Creating single pokemons
     function createPokemonObject(result) {
         result.forEach(async (pokemon) => {
             const res = await fetch(pokemon.url)
             const singlePokemon = await res.json()
-            console.log('hola', singlePokemon.name)
 
             setPokemons(
                 function makeList(pokemonAcumulator){
@@ -42,8 +34,12 @@ const Contact = () => {
         })
     }
 
-    useEffect(() => {
+    useEffect(async() => {
+        const fetching = await fetch('https://pokeapi.co/api/v2/pokemon/'+identifier)
+        const data = await fetching.json();
+        console.log(data)
         getAllPokemons()
+        setPokemon({name: data.name, image: data.sprites.other.dream_world.front_default})
     }, [])
 
 
@@ -51,14 +47,10 @@ const Contact = () => {
         <div className="mt-4 grid grid-cols-1 justify-items-center">
             <h1 className="text-4xl">Let's keep in touch</h1>
             <p>Need help with your business or project website? ... Let's talk!</p>
-            <div className='search my-4 border-2 border-gray-600 rounded'>
-                <input type="text" value={search} onChange={handleSearch} />
+            <div>
+                <p className='text-black'>{pokemon.name}</p>
+                <img src={pokemon.image}/>
             </div>
-            <ul>{filteredPokemons.map((pokemon, index) => {
-                return <li key={index}>{pokemon.name}</li>
-            })}
-            </ul>
-            <p className='text-black'>{name}</p>
         </div>
     );
 }
