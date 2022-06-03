@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PokemonsFetching from 'components/pages/PokemonsFetching';
-import Contact from 'components/pages/Contact';
 import NotFound from 'components/pages/NotFound';
 import Header from 'components/layouts/Header/Header';
 import Footer from 'components/layouts/Footer';
@@ -17,8 +16,6 @@ function App() {
           <Switch>
               <Route path='/' exact component={Index} />
               <Route path='/pokemons' component={PokemonsFetching} />
-              <Route path='/contact/:identifier' component={Contact} />
-              <Route path='/contact/' component={Contact} />
               <Route path='/shoppingCart' component={ShoppingCart} />
               <Route component={NotFound} />
           </Switch>
