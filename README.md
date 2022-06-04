@@ -18,6 +18,12 @@ There is a dropdwon menu where you can see the About/Home page, and the "Pokemon
 
 In that section, you can select the pokemons you wish and you like, based on their characteristics, price, etc.. To see all those details just click one of the pokemons' cards and it will be shown at the top of the page, where you can decide whether you want to add them in your shopping cart or not.
 
+  <p align="center">
+    <img src="src/assets/comparison.png" width="900">
+  </p>
+</p>
+
+
 The cart section can be accesed by clicking in the cart icon at the top right corner of the page. In there, you will find all the Pokemons that you had selected, increase or decrease their quantity  and know the total price you are going to pay in case you want them.
 
 # Purpose of the website
