@@ -1,6 +1,7 @@
 # Pokemon shop
-
-![Pokemon Shop cover image](https://github.com/juanserna8/portfolio/main/src/assets/cover.jpg)
+<p align="end">
+  <img src="src/assets/coverCopy.jpg" width="400">
+</p>
 
 Pokemon shop is a web application where you can visualize all your favourite prokemons with their abilities, characteristics and price, and decide which of them you would like to count on for your next battles, depending on your budget, preferences and strategies you might have.
 
