@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 const Contact = () => {
     const [pokemons, setPokemons] = useState([])
     const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon")
-    const [pokemon, setPokemon] = useState({name: 'latias', image:'https://heraldjournalism.com/wp-content/uploads/2020/07/347-3471090_latias-png-pokemon-latias-png.jpg'}); 
+    const [pokemon, setPokemon] = useState({name: 'latias', image:'https://heraldjournalism.com/wp-content/uploads/2020/07/347-3471090_latias-png-pokemon-latias-png.jpg'});
+    const [pokemon2, setPokemon2] = useState({name: 'latias', image:'https://heraldjournalism.com/wp-content/uploads/2020/07/347-3471090_latias-png-pokemon-latias-png.jpg'}) 
     
 
 
     //Extract the 'name' URL parameter 
-    const { identifier } = useParams();
+    const { identifier, identificador } = useParams();
     
     //Fetching all the pokemons
     async function getAllPokemons() {
@@ -34,12 +35,26 @@ const Contact = () => {
         })
     }
 
-    useEffect(async() => {
-        const fetching = await fetch('https://pokeapi.co/api/v2/pokemon/'+identifier)
+    async function getPokemon(id) {
+        const fetching = await fetch('https://pokeapi.co/api/v2/pokemon/'+id)
         const data = await fetching.json();
-        console.log(data)
-        getAllPokemons()
-        setPokemon({name: data.name, image: data.sprites.other.dream_world.front_default})
+        return data;
+        // console.log(data)
+        // setPokemon({name: data.name, image: data.sprites.other.dream_world.front_default})
+        // setPokemon2({name: data.name, image: data.sprites.other.dream_world.front_default})
+        // console.log(pokemon, pokemon2)
+    }
+
+    async function getAndSetPokemon() {
+        let callPokemon1 = await getPokemon(identifier)
+        let callPokemon2 = await getPokemon(identificador)
+        setPokemon({name: callPokemon1.name, image: callPokemon1.sprites.other.dream_world.front_default})
+        setPokemon2({name: callPokemon2.name, image: callPokemon2.sprites.other.dream_world.front_default})
+    }
+    
+    useEffect(async() => {
+        getAndSetPokemon()
+
     }, [])
 
 
@@ -50,6 +65,8 @@ const Contact = () => {
             <div>
                 <p className='text-black'>{pokemon.name}</p>
                 <img src={pokemon.image}/>
+                <p className='text-black'>{pokemon2.name}</p>
+                <img src={pokemon2.image}/>
             </div>
         </div>
     );

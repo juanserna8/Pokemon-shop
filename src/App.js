@@ -17,7 +17,7 @@ function App() {
           <Switch>
               <Route path='/' exact component={Index} />
               <Route path='/pokemons' component={PokemonsFetching} />
-              <Route path='/contact/:identifier' component={Contact} />
+              <Route path='/contact/:identifier/:identificador' component={Contact} />
               <Route path='/contact/' component={Contact} />
               <Route path='/shoppingCart' component={ShoppingCart} />
               <Route component={NotFound} />
